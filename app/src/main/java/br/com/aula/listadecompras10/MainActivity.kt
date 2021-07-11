@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val produtosAdapter = ProdutoAdapter(this)
+        list_view_produtos.adapter = produtosAdapter
+
         val btn_adicionarr : Button
         btn_adicionarr = btn_adicionar
         btn_adicionarr.setOnClickListener(object : View.OnClickListener
@@ -24,5 +27,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val adapter = list_view_produtos.adapter as ProdutoAdapter
+        adapter.clear()
+        adapter.addAll(produtosGlobal)
     }
 }
