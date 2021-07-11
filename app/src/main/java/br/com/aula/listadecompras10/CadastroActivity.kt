@@ -21,8 +21,25 @@ class CadastroActivity : AppCompatActivity() {
                 produto = txt_produto.text.toString()
                 if (produto.isNotEmpty())
                 {
-                    //evia para a lista
-                    txt_produto.text.clear()
+                    val produto = txt_produto.text.toString()
+                    val qtd = txt_qtd.text.toString()
+                    val valor = txt_valor.text.toString()
+                        if (produto.isNotEmpty() && qtd.isNotEmpty() && valor.isNotEmpty())
+                        {
+                            val prod = Produto(produto, qtd.toInt(), valor.toDouble())
+                            produtosGlobal.add(prod)
+                            txt_produto.text.clear()
+                            txt_qtd.text.clear()
+                            txt_valor.text.clear()
+                            //evia para a lista
+                        }
+                        else{
+                            txt_produto.error = if (txt_produto.text.isEmpty()) "Preencha o nome doproduto" else null
+                            txt_qtd.error = if (txt_qtd.text.isEmpty()) "Preencha a quantidade" else null
+                            txt_valor.error = if (txt_valor.text.isEmpty()) "Preencha o valor" else null
+                            }
+
+                        txt_produto.text.clear()
                 }
                 else
                     txt_produto.error = "Preencha um valor!"
