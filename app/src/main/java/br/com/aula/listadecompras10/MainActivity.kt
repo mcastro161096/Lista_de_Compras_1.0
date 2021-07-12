@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.NumberFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,19 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+
+        val btn_limparr : Button
+        btn_limparr = btn_limpar
+        btn_limparr.setOnClickListener(object : View.OnClickListener
+        {
+            override fun onClick(p0: View?)
+            {
+                list_view_produtos.removeAllViewsInLayout()
+                txt_total.text = "TOTAL: 0,00"
+                produtosGlobal.clear()
+
+            }
+        })
     }
 
     override fun onResume() {
@@ -34,5 +49,8 @@ class MainActivity : AppCompatActivity() {
         val adapter = list_view_produtos.adapter as ProdutoAdapter
         adapter.clear()
         adapter.addAll(produtosGlobal)
+        val soma = produtosGlobal.sumByDouble { it.valor * it.quantidade}
+        val f = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
+        txt_total.text = "TOTAL: ${ f.format(soma)}"
     }
 }

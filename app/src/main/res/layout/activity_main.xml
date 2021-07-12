@@ -23,9 +23,16 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:padding="10dp" />
-        <ListView
+
+    <ListView
         android:id="@+id/list_view_produtos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_limpar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Limpar lista" />
 
 </LinearLayout>
